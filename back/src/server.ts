@@ -3,7 +3,7 @@ const serveIndex = require("serve-index");
 
 const app = express();
 const port = 3000;
-const wwwDir = ".";
+const wwwDir: string = ".";
 
 app.use((req, res, next) => {
   console.log("req: ", req.method, req.url);
