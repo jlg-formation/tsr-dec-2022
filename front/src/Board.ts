@@ -15,9 +15,9 @@ export class Board {
   }
 
   drawLine(i: number, j: number) {
-    const angle1 = getAngleFromIndex(i);
+    const angle1 = getAngleFromIndex(i, this.config.samples);
     const p1 = computeCircleBorderPoint(angle1);
-    const angle2 = getAngleFromIndex(j);
+    const angle2 = getAngleFromIndex(j, this.config.samples);
     const p2 = computeCircleBorderPoint(angle2);
     this.drawLineBetweenPoints(p1, p2);
   }
@@ -47,8 +47,9 @@ export class Board {
     if (g === null) {
       throw new Error("cannot retrieve g.samples");
     }
+    console.log("this.config.samples: ", this.config.samples);
     for (let i = 0; i < this.config.samples; i++) {
-      const angle = getAngleFromIndex(i);
+      const angle = getAngleFromIndex(i, this.config.samples);
       const { x, y } = computeCircleBorderPoint(angle);
       const circle = document.createElementNS(svgns, "circle");
       circle.setAttributeNS(null, "cx", x + "");

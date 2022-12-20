@@ -7,5 +7,3 @@ export const c0: Point = {
 };
 export const r0 = 45;
 export const r1 = 1;
-
-export const samples = 10;

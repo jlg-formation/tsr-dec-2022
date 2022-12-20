@@ -3,7 +3,7 @@ import "./style.scss";
 
 const board = new Board();
 board.setConfig({
-  samples: 10,
+  samples: 100,
   multiplicationFactor: 2,
 });
 board.draw();
