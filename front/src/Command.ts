@@ -4,20 +4,20 @@ import { getConfigFromBackEnd, querySelector, sleep } from "./misc";
 
 export class Command {
   callback: (newConfig: any) => void = () => {};
-  private _config: Config;
+  #config: Config;
   set config(val: Config) {
-    this._config = val;
+    this.#config = val;
     this.render();
     this.callback(this.config);
   }
 
   get config(): Config {
-    return this._config;
+    return this.#config;
   }
 
-  private _isPlaying = false;
+  #isPlaying = false;
   set isPlaying(val: boolean) {
-    this._isPlaying = val;
+    this.#isPlaying = val;
     this.render();
     if (this.isPlaying) {
       this.play();
@@ -25,11 +25,11 @@ export class Command {
   }
 
   get isPlaying() {
-    return this._isPlaying;
+    return this.#isPlaying;
   }
 
   constructor(config: Config) {
-    this._config = config;
+    this.#config = config;
     this.render();
     this.manageActions();
   }
