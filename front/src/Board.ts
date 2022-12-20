@@ -2,6 +2,7 @@ import { r1, svgns } from "./constants";
 import { Config } from "./interfaces/Config";
 import { Point } from "./interfaces/Point";
 import { computeCircleBorderPoint, getAngleFromIndex } from "./math";
+import { querySelector } from "./misc";
 
 export class Board {
   config: Config = {
@@ -23,10 +24,7 @@ export class Board {
   }
 
   drawLineBetweenPoints(p1: Point, p2: Point) {
-    const g = document.querySelector("svg g.lines");
-    if (g === null) {
-      throw new Error("cannot retrieve g.lines");
-    }
+    const g = querySelector("svg g.lines");
     const line = document.createElementNS(svgns, "line");
     line.setAttributeNS(null, "x1", p1.x + "");
     line.setAttributeNS(null, "y1", p1.y + "");
@@ -43,11 +41,7 @@ export class Board {
   }
 
   drawSamples() {
-    const g = document.querySelector("svg g.samples");
-    if (g === null) {
-      throw new Error("cannot retrieve g.samples");
-    }
-    console.log("this.config.samples: ", this.config.samples);
+    const g = querySelector("svg g.samples");
     for (let i = 0; i < this.config.samples; i++) {
       const angle = getAngleFromIndex(i, this.config.samples);
       const { x, y } = computeCircleBorderPoint(angle);
