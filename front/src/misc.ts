@@ -3,12 +3,18 @@ import { Config } from "./interfaces/Config";
 
 import typia from "typia";
 
-export const querySelector = (cssSelector: string): Element => {
+export const querySelector = <T extends Element>(
+  cssSelector: string,
+  type?: new () => T
+): T => {
   const elt = document.querySelector(cssSelector);
   if (elt === null) {
     throw new Error(`Cannot retrieve ${cssSelector}`);
   }
-  return elt;
+  if (type && !(elt instanceof type)) {
+    throw new Error("Element exist but is not of type " + type);
+  }
+  return elt as T;
 };
 
 export const sleep = (delayMs: number) => {

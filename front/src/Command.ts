@@ -17,8 +17,9 @@ export class Command {
     const configKeys: (keyof Config)[] = ["samples", "multiplicationFactor"];
     for (const key of configKeys) {
       const sliderElt = querySelector(
-        `div.command label.${key} input`
-      ) as HTMLInputElement;
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
       sliderElt.addEventListener("input", () => {
         this.config[key] = +sliderElt.value;
         this.render();
@@ -68,16 +69,18 @@ export class Command {
       const elt = querySelector(`div.command label.${key} span`);
       elt.innerHTML = this.config[key].toFixed(2);
       const sliderElt = querySelector(
-        `div.command label.${key} input`
-      ) as HTMLInputElement;
+        `div.command label.${key} input`,
+        HTMLInputElement
+      );
       sliderElt.value = this.config[key] + "";
     }
     querySelector("div.command button.play").innerHTML = this.isPlaying
       ? "Stop"
       : "Play";
     const input = querySelector(
-      "div.command label.multiplicationFactor input"
-    ) as HTMLInputElement;
+      "div.command label.multiplicationFactor input",
+      HTMLInputElement
+    );
     input.step = step + "";
   }
 }
