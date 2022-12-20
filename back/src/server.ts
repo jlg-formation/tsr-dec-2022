@@ -4,7 +4,7 @@ import { api } from "./api";
 
 const app = express();
 const port = 3000;
-const wwwDir: string = ".";
+const wwwDir: string = "../front/dist";
 
 const logAccess = (req: Request, res: Response, next: NextFunction) => {
   console.log("req: ", req.method, req.url);

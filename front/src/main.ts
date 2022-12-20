@@ -4,8 +4,8 @@ import { Config } from "./interfaces/Config";
 import "./style.scss";
 
 const config: Config = {
-  samples: 45,
-  multiplicationFactor: 2,
+  samples: 47,
+  multiplicationFactor: 4,
 };
 
 const board = new Board();

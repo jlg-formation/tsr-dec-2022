@@ -1,3 +1,5 @@
+$color: black;
+
 * {
   box-sizing: border-box;
 }
@@ -9,21 +11,21 @@ body {
 svg {
   height: 30em;
   width: 50em;
-  border: 0.1em solid black;
+  border: 0.1em solid $color;
 
   circle {
     fill: transparent;
-    stroke: black;
+    stroke: $color;
     stroke-width: 0.01em;
   }
 
   g.samples circle {
-    fill: black;
+    fill: $color;
     stroke: transparent;
   }
 
   g.lines line {
-    stroke: black;
+    stroke: $color;
     stroke-width: 0.01em;
   }
 }
@@ -31,7 +33,7 @@ svg {
 div.command {
   height: 10em;
   width: 50em;
-  border: 0.1em solid black;
+  border: 0.1em solid $color;
 
   padding: 0.5em;
 
