@@ -19,5 +19,12 @@ export const getConfigFromBackEnd = async () => {
   const response = await fetch(configUrl);
   console.log("response: ", response);
   const json = await response.json();
+  const keys = Object.keys(json).sort();
+  const array = ["multiplicationFactor", "samples"];
+  for (let i = 0; i < array.length; i++) {
+    if (keys[i] !== array[i]) {
+      throw new Error("validation error");
+    }
+  }
   return json as Config;
 };
