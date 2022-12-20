@@ -4,6 +4,15 @@ import { Point } from "./interfaces/Point";
 import { computeCircleBorderPoint, getAngleFromIndex } from "./math";
 import { querySelector } from "./misc";
 
+function Composant(metadata: { data: string }) {
+  return function (args: unknown) {
+    console.log("metadata: ", metadata, args);
+  };
+}
+
+@Composant({
+  data: "coucou",
+})
 export class Board {
   config: Config = {
     samples: 23,
