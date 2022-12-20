@@ -1,6 +1,8 @@
 import { configUrl } from "./constants";
 import { Config } from "./interfaces/Config";
 
+import typia from "typia";
+
 export const querySelector = (cssSelector: string): Element => {
   const elt = document.querySelector(cssSelector);
   if (elt === null) {
@@ -19,12 +21,6 @@ export const getConfigFromBackEnd = async () => {
   const response = await fetch(configUrl);
   console.log("response: ", response);
   const json = await response.json();
-  const keys = Object.keys(json).sort();
-  const array = ["multiplicationFactor", "samples"];
-  for (let i = 0; i < array.length; i++) {
-    if (keys[i] !== array[i]) {
-      throw new Error("validation error");
-    }
-  }
+  typia.assert<Config>(json);
   return json as Config;
 };
