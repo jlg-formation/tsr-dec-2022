@@ -5,3 +5,9 @@ export const querySelector = (cssSelector: string): Element => {
   }
   return elt;
 };
+
+export const sleep = (delayMs: number) => {
+  return new Promise<void>((resolve) => {
+    setTimeout(resolve, delayMs);
+  });
+};

@@ -7,3 +7,5 @@ export const c0: Point = {
 };
 export const r0 = 45;
 export const r1 = 0.1;
+
+export const step = 0.01;
