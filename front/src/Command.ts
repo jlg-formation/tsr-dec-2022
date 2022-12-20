@@ -4,11 +4,32 @@ import { getConfigFromBackEnd, querySelector, sleep } from "./misc";
 
 export class Command {
   callback: (newConfig: any) => void = () => {};
-  config: Config;
-  isPlaying = false;
+  private _config: Config;
+  set config(val: Config) {
+    this._config = val;
+    this.render();
+    this.callback(this.config);
+  }
+
+  get config(): Config {
+    return this._config;
+  }
+
+  private _isPlaying = false;
+  set isPlaying(val: boolean) {
+    this._isPlaying = val;
+    this.render();
+    if (this.isPlaying) {
+      this.play();
+    }
+  }
+
+  get isPlaying() {
+    return this._isPlaying;
+  }
 
   constructor(config: Config) {
-    this.config = config;
+    this._config = config;
     this.render();
     this.manageActions();
   }
@@ -21,26 +42,16 @@ export class Command {
         HTMLInputElement
       );
       sliderElt.addEventListener("input", () => {
-        this.config[key] = +sliderElt.value;
-        this.render();
-        this.callback(this.config);
+        this.config = { ...this.config, [key]: +sliderElt.value };
       });
     }
     querySelector("div.command button.play").addEventListener("click", () => {
-      console.log("click");
       this.isPlaying = !this.isPlaying;
-      this.render();
-      if (this.isPlaying) {
-        this.play();
-      }
     });
     querySelector("div.command button.back-end").addEventListener(
       "click",
       async () => {
-        console.log("click back-end");
         this.config = await getConfigFromBackEnd();
-        this.render();
-        this.callback(this.config);
       }
     );
   }
@@ -52,14 +63,13 @@ export class Command {
   async play() {
     while (this.isPlaying) {
       await sleep(18);
-      this.config.multiplicationFactor += step;
-      if (this.config.multiplicationFactor > 100) {
-        this.config.multiplicationFactor = 0;
+      let multiplicationFactor = this.config.multiplicationFactor;
+      multiplicationFactor += step;
+      if (multiplicationFactor > 100) {
+        multiplicationFactor = 0;
       }
-      this.config.multiplicationFactor =
-        Math.round(this.config.multiplicationFactor * 100) / 100;
-      this.render();
-      this.callback(this.config);
+      multiplicationFactor = Math.round(multiplicationFactor * 100) / 100;
+      this.config = { ...this.config, multiplicationFactor };
     }
   }
 
