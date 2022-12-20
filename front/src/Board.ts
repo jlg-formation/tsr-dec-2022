@@ -10,6 +10,11 @@ export class Board {
     multiplicationFactor: 3,
   };
 
+  clean() {
+    querySelector("svg g.samples").innerHTML = "";
+    querySelector("svg g.lines").innerHTML = "";
+  }
+
   draw() {
     this.drawSamples();
     this.drawLines();
@@ -51,6 +56,11 @@ export class Board {
       circle.setAttributeNS(null, "r", r1 + "");
       g.appendChild(circle);
     }
+  }
+
+  redraw() {
+    this.clean();
+    this.draw();
   }
 
   setConfig(config: Config) {
