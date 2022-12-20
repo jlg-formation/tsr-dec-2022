@@ -13,4 +13,9 @@ svg {
     fill: black;
     stroke: transparent;
   }
+
+  g.lines line {
+    stroke: black;
+    stroke-width: 0.02em;
+  }
 }
