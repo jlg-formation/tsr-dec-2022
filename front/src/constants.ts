@@ -6,4 +6,4 @@ export const c0: Point = {
   y: 50,
 };
 export const r0 = 45;
-export const r1 = 1;
+export const r1 = 0.1;
