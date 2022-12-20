@@ -2,4 +2,15 @@ svg {
   height: 30em;
   width: 50em;
   border: 0.1em solid black;
+
+  circle {
+    fill: transparent;
+    stroke: black;
+    stroke-width: 0.02em;
+  }
+
+  g.samples circle {
+    fill: black;
+    stroke: transparent;
+  }
 }
