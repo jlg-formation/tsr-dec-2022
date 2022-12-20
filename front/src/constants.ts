@@ -9,3 +9,5 @@ export const r0 = 45;
 export const r1 = 0.1;
 
 export const step = 0.01;
+
+export const configUrl = "http://localhost:3000/api/config";

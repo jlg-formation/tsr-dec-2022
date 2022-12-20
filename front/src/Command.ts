@@ -1,6 +1,6 @@
 import { step } from "./constants";
 import { Config } from "./interfaces/Config";
-import { querySelector, sleep } from "./misc";
+import { getConfigFromBackEnd, querySelector, sleep } from "./misc";
 
 export class Command {
   callback: (newConfig: any) => void = () => {};
@@ -25,7 +25,7 @@ export class Command {
         this.callback(this.config);
       });
     }
-    querySelector("div.command button").addEventListener("click", () => {
+    querySelector("div.command button.play").addEventListener("click", () => {
       console.log("click");
       this.isPlaying = !this.isPlaying;
       this.render();
@@ -33,6 +33,15 @@ export class Command {
         this.play();
       }
     });
+    querySelector("div.command button.back-end").addEventListener(
+      "click",
+      async () => {
+        console.log("click back-end");
+        this.config = await getConfigFromBackEnd();
+        this.render();
+        this.callback(this.config);
+      }
+    );
   }
 
   onUpdate(callback: (newConfig: any) => void) {
@@ -63,7 +72,7 @@ export class Command {
       ) as HTMLInputElement;
       sliderElt.value = this.config[key] + "";
     }
-    querySelector("div.command button").innerHTML = this.isPlaying
+    querySelector("div.command button.play").innerHTML = this.isPlaying
       ? "Stop"
       : "Play";
     const input = querySelector(

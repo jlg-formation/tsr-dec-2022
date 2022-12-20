@@ -45,9 +45,13 @@ div.command {
     }
   }
 
-  button {
-    padding: 0.5em 1em;
-    align-self: center;
-    cursor: pointer;
+  div.buttons {
+    display: flex;
+    justify-content: space-between;
+    button {
+      padding: 0.5em 1em;
+      align-self: center;
+      cursor: pointer;
+    }
   }
 }
